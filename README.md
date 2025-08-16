@@ -65,15 +65,9 @@ ALPHA_VANTAGE_API_KEY=your_alpha_vantage_api_key_here
 python main.py
 
 ## Example Usage
-🤖 Chatbot ready! Type 'exit' or 'quit' to leave.
-You: amazon
-AI: Alpha Vantage Ledger 📜
-Amazon (AMZN) stock price:
-USD: $230.98
-INR: ₹20,227.25
-BTC: 0.001942 BTC
+![alt text](image-1.png)
 
-
+![alt text](<Screenshot 2025-08-16 114819.png>)
 
 ## Known Issues
 
