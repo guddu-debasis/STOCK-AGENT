@@ -1,93 +1,116 @@
-# Conversational AI Stock Assistant
-A multi-tool AI agent built with LangChain, Google Gemini, and Chainlit that fetches stock prices, crypto data, and answers complex financial questions.
-![alt text](image-1.png)
-## Overview
-This project is a sophisticated, conversational AI financial assistant. Unlike simple chatbots, this agent can dynamically choose from multiple tools to handle a variety of requests. Whether you need the latest stock price for AAPL, a 5-day history for Amazon, or a definition of "quantitative easing," this assistant can help.
-It features a dual-interface system: a simple command-line interface for quick tests and a polished, user-friendly web UI built with Chainlit.
-## Features
-🤖 Intelligent Agent: Uses a LangChain agent powered by Google Gemini to understand user intent and orchestrate tasks.
-🛠️ Dynamic Tool Use: Intelligently selects the right tool for the job, whether it's fetching stock prices, crypto data, or performing a web search.
-📈 Multi-Source Stock Data: Fetches stock prices from Alpha Vantage and uses Yahoo Finance as a dedicated source for specific tickers like Indian stocks.
-🔍 Smart Ticker Search: Automatically uses Tavily Search to find the correct stock ticker symbol from a company name (e.g., "Apple" -> "AAPL").
-🧠 Financial Knowledge Base: Can answer general financial questions and provide definitions by leveraging a web search tool.
-💻 Dual Interface: Run it as a classic command-line application (main.py) or as a rich web interface using Chainlit (app.py).
-📜 Conversation Memory: Remembers the context of your conversation for natural follow-up questions.
-## Tech Stack
-Component	Technology
-AI Agent	LangChain, Google Gemini (langchain-google-genai)
-Stock Data	Alpha Vantage, Yahoo Finance (yfinance)
-Crypto Data	CoinGecko API
-Web Search	Tavily Search (langchain-tavily)
-Web Interface	Chainlit
-Environment	Python, python-dotenv
-# How It Works
-User Input: The user asks a question in the Chainlit UI (e.g., "What was the stock price of Tesla for the last 3 days?").
-Agent Brain: The LangChain agent, powered by Google Gemini, receives the input and chat history.
-Tool Selection: Based on its instructions, the agent decides which tool to use. In this case, it selects get_stock_price with company_symbol='TSLA' and days=3.
-Tool Execution: The tool calls the Alpha Vantage API, retrieves the data, and formats it into a clear summary.
-Response Generation: The tool's output is sent back to the agent, which formulates a friendly, human-readable answer.
-Memory: The conversation is saved, allowing for contextual follow-ups like "What about Netflix?".
-Project Structure
-code
-## Code
-📦 AI-Stock-Assistant
- ┣ 📜 app.py             # Entry point for Chainlit Web UI
- ┣ 📜 main.py            # Entry point for Command-Line Interface
- ┣ 📜 tool_handler.py    # Defines tools (get_stock_price, etc.)
- ┣ 📜 model_setup.py     # Configures the Google Gemini model
- ┣ 📜 prompt_template.py # The core agent prompt and instructions
- ┣ 📜 memory_handler.py  # (Optional) For saving chat history to a file
- ┣ 📜 requirements.txt   # Project dependencies
- ┣ 📜 .env               # API keys (not committed)
- ┗ 📜 README.md          # Project documentation
-## Setup and Installation
-1️⃣ Clone the Repository
-code
-Bash
-git clone https://github.com/your-username/langchain-stock-chatbot.git
-cd langchain-stock-chatbot
-2️⃣ Create and Activate a Virtual Environment
-code
-Bash
-# On Windows
+
+# 📊 STOCK-AGENT
+
+**STOCK-AGENT** is an AI-powered financial assistant built with [Chainlit](https://docs.chainlit.io/) and [LangChain](https://www.langchain.com/).  
+It fetches **stock prices, crypto data, and financial knowledge** in a simple, conversational way.
+
+
+## ✨ Features
+
+📈 **Stock Prices**
+  Reliance (India) via **Yahoo Finance**
+  Global stocks via **Alpha Vantage API**
+  Supports multi-day historical queries (e.g. “Tesla stock price for the last 5 days”)
+
+🪙 **Crypto Prices**
+  Currently supports **Bitcoin (BTC)** via **CoinGecko API**
+
+📚 **Finance Knowledge**
+  Ask about ETFs, IPOs, or other concepts — uses **Tavily Search** for explanations
+
+🧠 **Conversational Memory**
+   Remembers past questions so you can ask follow-ups naturally
+
+⚡ **Powered by LLMs**
+  Uses **Google Gemini (`gemini-2.5-flash`)** as the reasoning engine
+
+
+
+## 🛠️ Tech Stack
+
+**Chainlit** → Real-time chat UI  
+**LangChain** → Agent + tool orchestration  
+**Google Gemini** → LLM for reasoning and responses  
+**APIs**:
+  1.Yahoo Finance (`yfinance`) → Indian stocks  
+  2.Alpha Vantage → Global stocks  
+  3.CoinGecko → Bitcoin price  
+  4.Tavily → Financial knowledge search  
+
+
+
+## 📂 Project Structure
+
+STOCK-AGENT/
+├── app.py              # Chainlit entrypoint: starts the chatbot
+├── tool\_handler.py     # Stock, crypto, and search tools
+├── prompt\_template.py  # System prompt & instructions
+├── model\_setup.py      # Loads Gemini model
+├── requirements.txt    # Project dependencies
+└── README.md
+
+
+
+## ⚙️ Installation & Setup
+
+### 1. Clone the repo
+
+git clone https://github.com/guddu-debasis/STOCK-AGENT.git
+cd STOCK-AGENT
+
+
+### 2. Create a virtual environment
+
+
 python -m venv venv
-venv\Scripts\activate
+source venv/bin/activate   # macOS/Linux
+venv\Scripts\activate      # Windows
 
-# On Linux/Mac
-python3 -m venv venv
-source venv/bin/activate
-3️⃣ Install Dependencies
-code
-Bash
+### 3. Install dependencies
+
+
 pip install -r requirements.txt
-4️⃣ Configure API Keys
-Create a .env file in the root of the project and add the following keys.
-code
-Env
-# Get from https://makersuite.google.com/app/apikey
-GOOGLE_API_KEY="your_google_api_key_here"
 
-# Get from https://www.alphavantage.co/support/#api-key
-ALPHA_VANTAGE_API_KEY="your_alpha_vantage_api_key_here"
+### 4. Create a `.env` file
 
-# Get from https://app.tavily.com/
-TAVILY_API_KEY="your_tavily_api_key_here"```
+Add your API keys in the root directory:
 
-#### 5️⃣ Run the Application
+.env
+ALPHA_VANTAGE_API_KEY=your_alpha_vantage_api_key
+GOOGLE_API_KEY=your_google_api_key
 
-You can run the chatbot in two ways:
 
-**A) With the Chainlit Web Interface (Recommended):**
+* Get Alpha Vantage API key: [https://www.alphavantage.co/support/#api-key](https://www.alphavantage.co/support/#api-key)
 
-```bash
+
+* Get Google API key: [https://aistudio.google.com/](https://aistudio.google.com/)
+
+### 5. Run the chatbot
+
 chainlit run app.py -w
-This will start a local server and open the web UI in your browser.
-B) With the Command-Line Interface:
-code
-Bash
-python main.py
-Future Improvements
-Add graphing/charting of historical stock data.
-Integrate financial news sentiment analysis as a tool.
-Add support for a wider range of cryptocurrencies.
-Create deployment instructions for services like Docker or Streamlit Cloud.
+
+
+Open [http://localhost:8000](http://localhost:8000) in your browser 🎉
+
+
+## 💬 Example Usage
+
+**User:**
+`What is Tesla’s stock price for the last 3 days?`
+
+**Bot:**
+
+On 2025-08-14, TSLA closed at $242.19 USD.
+On 2025-08-15, TSLA closed at $239.55 USD.
+On 2025-08-16, TSLA closed at $241.72 USD.
+
+
+
+## 🚀 Future Improvements
+
+* Support for more cryptocurrencies (ETH, SOL, etc.)
+* Smarter ticker lookup and fallbacks
+* Chart visualization for stock history
+* Portfolio tracking and alerts
+
+
