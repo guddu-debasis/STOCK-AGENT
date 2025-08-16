@@ -1,88 +1,90 @@
-📊 Financial Assistant (Stocks & Crypto)
+# Stock Price Chatbot with LangChain + OpenAI + Alpha Vantage
 
-This project is an AI-powered financial assistant built with LangChain and Chainlit.
-It helps users fetch stock prices, cryptocurrency prices (BTC), and learn about financial concepts in a conversational way with a sleek web-based UI.
+This project is a conversational AI Stock Chatbot built with LangChain and OpenAI, capable of fetching real-time stock prices from Alpha Vantage and converting them into USD, INR, and BTC.
 
-🚀 Features
+The chatbot supports global stock markets (US, India, etc.) and responds naturally to user queries.
 
-🔎 Stock Price Lookup
+## Features
 
-Get historical stock prices for any ticker symbol (e.g., AAPL for Apple).
+✅ Chat with AI using LangChain + OpenAI
 
-Special handling for Indian stocks (like Reliance via Yahoo Finance).
+✅ Fetch real-time stock prices via Alpha Vantage API
 
-Automatic retry with alternative ticker symbols if one fails.
+✅ Multi-currency support: USD, INR, BTC
 
-Supports fetching multi-day price summaries.
+✅ Handles US stocks (e.g., AAPL, MSFT), Indian stocks (INFY, RELIANCE.BSE), and more
 
-💰 Crypto Price Lookup
+✅ Environment variables for secure API key management
 
-Currently supports Bitcoin (BTC) via CoinGecko API.
+✅ Easy CLI interface (python main.py)
 
-Returns real-time USD prices.
+## Tech Stack
 
-🌍 Financial Knowledge Search
+LangChain – for AI agent & tools
 
-Uses Tavily Search to explain general finance concepts (e.g., "What is the stock market?").
+OpenAI – for natural language responses
 
-Provides human-friendly, clear, and synthesized answers.
+Alpha Vantage – for stock data
 
-💬 Interactive Chat with Chainlit
+forex-python – for currency conversion
 
-Talk to your assistant in a chat UI.
+Requests – for API calls
 
-History-aware conversation.
+## Project Structure
+📦 LANGCHAIN
+ ┣ 📜 main.py            # Entry point - chatbot loop
+ ┣ 📜 tool_handler.py    # Tool to fetch stock prices
+ ┣ 📜 requirements.txt   # Dependencies
+ ┣ 📜 .env               # API keys (not committed)
+ ┗ 📜 README.md          # Project documentation
 
-Clean, developer-friendly setup.
+## Setup Instructions
+1️⃣ Clone the repository
+git clone https://github.com/your-username/langchain-stock-chatbot.git
+cd langchain-stock-chatbot
 
-🛠️ Tech Stack
-
-Python 3
-
-LangChain
-
-Chainlit
-
-Yahoo Finance API (yfinance)
-
-Alpha Vantage API
-
-Tavily Search
-
-📂 Project Structure
-.
-├── tool_handler.py     # Tools for fetching stock, crypto, and search data
-├── prompt_template.py  # Prompt setup for AI assistant instructions
-├── .gitignore          # Ignored files (env, cache, etc.)
-└── app.py              # Main entrypoint for Chainlit
-
-⚙️ Setup & Installation
-1️⃣ Clone the Repository
-git clone <your-repo-url>
-cd <your-repo-name>
-
-2️⃣ Create a Virtual Environment
+2️⃣ Create & activate a virtual environment
 python -m venv venv
-source venv/bin/activate   # Mac/Linux
-venv\Scripts\activate      # Windows
+venv\Scripts\activate    # On Windows
+source venv/bin/activate # On Linux/Mac
 
-3️⃣ Install Dependencies
+3️⃣ Install dependencies
 pip install -r requirements.txt
 
-4️⃣ Configure Environment Variables
+4️⃣ Add API keys
 
 Create a .env file in the project root:
 
-ALPHA_VANTAGE_API_KEY=your_api_key_here
+OPENAI_API_KEY=your_openai_api_key_here
+ALPHA_VANTAGE_API_KEY=your_alpha_vantage_api_key_here
 
-Then start Chainlit:
 
-chainlit run app.py -w
+## Get your free Alpha Vantage key here: https://www.alphavantage.co/support/#api-key
 
-👉 Open http://localhost:8000 to chat with your assistant.
+5️⃣ Run the chatbot
+python main.py
 
-📖 Example Conversations
+## Example Usage
+🤖 Chatbot ready! Type 'exit' or 'quit' to leave.
+You: amazon
+AI: Alpha Vantage Ledger 📜
+Amazon (AMZN) stock price:
+USD: $230.98
+INR: ₹20,227.25
+BTC: 0.001942 BTC
 
-![alt text](<Screenshot 2025-08-16 114819.png>)
 
-![alt text](image-1.png)
+
+## Known Issues
+
+Alpha Vantage has free tier limits (5 requests/minute) → too many queries may show "Too Many Requests" error.
+
+Some Indian stocks require .BSE or .NS suffix (e.g., RELIANCE.BSE).
+
+## Future Improvements
+
+Add Yahoo Finance fallback when Alpha Vantage is rate-limited
+
+Web UI with Streamlit or React
+
+More advanced financial analysis tools
