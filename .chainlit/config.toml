@@ -65,7 +65,7 @@ edit_message = true
 
 [UI]
 # Name of the assistant.
-name = "Assistant"
+name = "STOCK AGENT"
 
 # default_theme = "dark"
 
