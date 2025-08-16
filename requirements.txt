@@ -1,0 +1,10 @@
+# Core libraries
+langchain
+langchain-groq
+langchain-tavily
+python-dotenv
+requests
+yfinance
+# The web interface
+chainlit
+
