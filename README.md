@@ -40,17 +40,16 @@ It fetches **stock prices, crypto data, and financial knowledge** in a simple, c
 
 
 ## 📂 Project Structure
-
+```bash
 STOCK-AGENT/
-├── app.py              # Chainlit entrypoint: starts the chatbot
-├── tool\_handler.py     # Stock, crypto, and search tools
-├── prompt\_template.py  # System prompt & instructions
-├── model\_setup.py      # Loads Gemini model
-├── requirements.txt    # Project dependencies
+├── app.py              
+├── tool_handler.py     
+├── prompt_template.py  
+├── model_setup.py      
+├── requirements.txt    
 └── README.md
 
-
-
+```
 ## ⚙️ Installation & Setup
 
 ### 1. Clone the repo
