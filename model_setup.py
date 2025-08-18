@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def get_model():
-    model_name = "llama-3.1-8b-instant"
+    model_name = "gemini-2.5-pro"
     
     return ChatGroq(model=model_name)
 
